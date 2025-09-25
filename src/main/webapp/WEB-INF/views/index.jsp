@@ -28,7 +28,7 @@
         <form method="post" action="auth/login">
             <h2>Welcome from JD POS</h2>
             <input type="text" placeholder="username"  name="username"/>
-            <input type="password" placeholder="password" />
+            <input type="password" placeholder="password" name="password" />
 
 
             <button class="login-button" >LOGIN</button>
