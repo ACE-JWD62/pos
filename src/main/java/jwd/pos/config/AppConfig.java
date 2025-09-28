@@ -24,7 +24,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = "jwd.pos")
-@PropertySource("classpath:application.dev.properties")
+@PropertySource("classpath:application.prod.properties")
 public class AppConfig implements WebMvcConfigurer {
 
 

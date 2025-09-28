@@ -6,6 +6,7 @@ target/
 ### IntelliJ IDEA ###
 .idea/modules.xml
 src/main/resources/application.dev.properties
+src/main/resources/application.prod.properties
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
