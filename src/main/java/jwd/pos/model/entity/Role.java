@@ -5,15 +5,16 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.IdGeneratorType;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "tbl_roles")
 public class Role {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
 
     @Column(nullable = false)
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private jwd.pos.constant.Role name;
 }
