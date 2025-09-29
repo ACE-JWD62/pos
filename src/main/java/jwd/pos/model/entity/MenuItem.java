@@ -39,6 +39,4 @@
         @OneToMany(mappedBy = "menuItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
         private Set<MenuItemDiscount> menuItemDiscounts;
 
-        @OneToMany(mappedBy = "menuItem", fetch = FetchType.LAZY)
-        private Set<SalesItem> SalesItem;
     }

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.Set;
-
+@Entity
 public class Tax {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +22,6 @@ public class Tax {
     @Column (nullable = false)
     private Date end_date;
 
-    @OneToMany(mappedBy = "tax", fetch = FetchType.LAZY)
-    private Set<SalesTax> salesTax;
 
 
 }

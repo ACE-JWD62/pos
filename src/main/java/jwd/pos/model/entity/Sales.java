@@ -3,7 +3,7 @@ package jwd.pos.model.entity;
 import jakarta.persistence.*;
 
 import java.util.Set;
-
+@Entity
 public class Sales {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +18,4 @@ public class Sales {
     @Column(nullable = false)
     private double totalAmount;
 
-    @OneToMany(mappedBy = "sales", fetch = FetchType.LAZY)
-    private Set<SalesItem> salesItems;
-
-    @OneToMany(mappedBy = "sales", fetch = FetchType.LAZY)
-    private Set<SalesTax> salesTax;
 }
