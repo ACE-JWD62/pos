@@ -1,8 +1,7 @@
 package jwd.pos.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
@@ -10,6 +9,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "tbl_category")
+@NoArgsConstructor
 public class Category {
 
     @Id

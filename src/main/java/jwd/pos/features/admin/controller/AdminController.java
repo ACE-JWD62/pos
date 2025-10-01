@@ -1,13 +1,20 @@
 package jwd.pos.features.admin.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jwd.pos.model.entity.Category;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+    private List<Category> categories;
 
     @GetMapping("/dashboard")
     public String getAdminDashboardPage(Model model) {
@@ -22,6 +29,7 @@ public class AdminController {
         model.addAttribute("pageTitle","Menu Management");
         model.addAttribute("pageContent","/WEB-INF/views/pages/admin/admin_menu.jsp");
         model.addAttribute("currentPage","menus");
+
         return "pages/admin/admin_layout";
     }
 
@@ -51,3 +59,4 @@ public class AdminController {
     }
 
 }
+

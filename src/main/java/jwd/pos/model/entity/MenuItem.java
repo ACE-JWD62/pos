@@ -1,41 +1,50 @@
-    package jwd.pos.model.entity;
+package jwd.pos.model.entity;
 
-    import jakarta.persistence.*;
+import jakarta.persistence.*;
+import lombok.Builder;
 
-    import java.util.Date;
-    import java.util.Set;
+import java.time.LocalDate;
+import java.util.Set;
 
-    @Entity
-    @Table(name = "tbl_menu_item")
-    public class MenuItem {
+@Entity
+@Table(name = "tbl_menu_item")
+@Builder
+public class MenuItem {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        @Column(nullable = false)
-        private String menuName;
+    @Column(nullable = false)
+    private String menuName;
 
 
-        @Column(nullable = false)
-        private double price;
+    @Column(nullable = false)
+    private double price;
 
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "fk_category_id", nullable = false)
-        private Category category;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_category_id", nullable = false)
+    private Category category;
 
-        private String imageUrl;
+    private String imageUrl;
 
-        private boolean isThereDiscount;
+    private boolean isThereDiscount = false;
 
-        private String description;
+    private String description;
 
-        private Date creaetd_date;
+    @Column(nullable = false)
+    private LocalDate created_date;
 
-        private Date updated_date;
+    private LocalDate updated_date;
 
-        private String created_by;
+    private String created_by;
 
-        @OneToMany(mappedBy = "menuItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-        private Set<MenuItemDiscount> menuItemDiscounts;
+    @OneToMany(mappedBy = "menuItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<MenuItemDiscount> menuItemDiscounts;
+
+    @PrePersist
+    private void setCreated_date(){
+        this.created_date = LocalDate.now();
     }
+
+}
