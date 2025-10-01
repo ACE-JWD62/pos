@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -15,6 +14,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 
 import javax.sql.DataSource;
@@ -50,10 +50,6 @@ public class AppConfig implements WebMvcConfigurer {
     @Value("${pwd}")
     private String pwd;
 
-
-
-
-
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource ds=new DriverManagerDataSource();
@@ -63,7 +59,6 @@ public class AppConfig implements WebMvcConfigurer {
         ds.setPassword(pwd);
         return ds;
     }
-
 
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
@@ -79,12 +74,10 @@ public class AppConfig implements WebMvcConfigurer {
         return sessionFactory;
     }
 
-
     @Bean
     public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
        return new HibernateTransactionManager(sessionFactory);
     }
-
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -96,9 +89,13 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
-
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
+    }
+
+    @Bean
+    public StandardServletMultipartResolver multipartResolver() {
+                return new StandardServletMultipartResolver();
     }
 }
